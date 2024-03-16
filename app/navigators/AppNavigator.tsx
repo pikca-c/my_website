@@ -13,13 +13,14 @@ import {
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 import { observer } from "mobx-react-lite"
 import React from "react"
-import { useColorScheme } from "react-native"
+import { ScrollView, View, useColorScheme } from "react-native"
 import * as Screens from "app/screens"
 import Config from "../config"
 import { useStores } from "../models"
 import { DemoNavigator, DemoTabParamList } from "./DemoNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "app/theme"
+import { Button, Text } from "app/components"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -54,33 +55,33 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStack
 >
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
+// const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
   const {
     authenticationStore: { isAuthenticated },
   } = useStores()
 
+  const myHeaderItems = ["Title", "Projects", "History", "Music", "Extras"]
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
-      initialRouteName={isAuthenticated ? "Welcome" : "Login"}
-    >
-      {isAuthenticated ? (
-        <>
-          <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
-
-          <Stack.Screen name="Demo" component={DemoNavigator} />
-        </>
-      ) : (
-        <>
-          <Stack.Screen name="Login" component={Screens.LoginScreen} />
-        </>
-      )}
-
-      {/** 🔥 Your screens go here */}
-      {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
-    </Stack.Navigator>
+    <View>
+      <View style={{ flexDirection: "row", justifyContent: "center", flexGrow: 1 }}>
+        {myHeaderItems.map((item) => {
+          return (
+            <Button
+              key={item}
+              text={item}
+              onPress={() => {
+                console.log("function pressed")
+              }}
+            />
+          )
+        })}
+      </View>
+      <ScrollView style={{ backgroundColor: "red" }}>
+        <Text text="HIII" style={{ height: 2000 }} />
+      </ScrollView>
+    </View>
   )
 })
 
