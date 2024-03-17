@@ -78,8 +78,8 @@ const AppStack = observer(function AppStack() {
           )
         })}
       </View>
-      <ScrollView style={{ backgroundColor: "red" }}>
-        <Text text="HIII" style={{ height: 2000 }} />
+      <ScrollView style={{ backgroundColor: "lime" }}>
+        <Text text="test" style={{ height: 200 }} />
       </ScrollView>
     </View>
   )
