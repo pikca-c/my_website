@@ -13,7 +13,7 @@ import {
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 import { observer } from "mobx-react-lite"
 import React from "react"
-import { ScrollView, View, useColorScheme } from "react-native"
+import { ScrollView, View, StyleSheet, useColorScheme } from "react-native"
 import * as Screens from "app/screens"
 import Config from "../config"
 import { useStores } from "../models"
@@ -62,10 +62,16 @@ const AppStack = observer(function AppStack() {
     authenticationStore: { isAuthenticated },
   } = useStores()
 
+const ViewStyle = StyleSheet.create({
+  container: {
+    flexDirection: "row", flexGrow: 1, justifyContent: "center"
+  },
+})
+
   const myHeaderItems = ["Title", "Projects", "History", "Music", "Extras"]
   return (
     <View>
-      <View style={{ flexDirection: "row", justifyContent: "center", flexGrow: 1 }}>
+      <View style = {ViewStyle}>
         {myHeaderItems.map((item) => {
           return (
             <Button
@@ -78,7 +84,7 @@ const AppStack = observer(function AppStack() {
           )
         })}
       </View>
-      <ScrollView style={{ backgroundColor: "lime" }}>
+      <ScrollView style={{ backgroundColor: "red" }}>
         <Text text="test" style={{ height: 200 }} />
       </ScrollView>
     </View>
