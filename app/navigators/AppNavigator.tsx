@@ -62,7 +62,7 @@ const AppStack = observer(function AppStack() {
     authenticationStore: { isAuthenticated },
   } = useStores()
 
-const ViewStyle = StyleSheet.create({
+const HeaderViewStyle = StyleSheet.create({
   container: {
     flexDirection: "row", flexGrow: 1, justifyContent: "center"
   },
@@ -71,7 +71,7 @@ const ViewStyle = StyleSheet.create({
   const myHeaderItems = ["Title", "Projects", "History", "Music", "Extras"]
   return (
     <View>
-      <View style = {ViewStyle}>
+      <View style={HeaderViewStyle}>
         {myHeaderItems.map((item) => {
           return (
             <Button
